@@ -25,6 +25,21 @@ async function run(){
         const result = await contents.find({}).toArray();
         res.status(200).json(result);
     })
+    
+    app.post('/timeUpdate',async (req,res) => {
+        const result = await contents.updateOne({_id : objectId("631c379f3b0ff35052a58fae")}, { $set: { marathonTime: req.body.data } })
+        res.status(200).json(result)
+    })
+
+    app.post('/updateDescription',async (req,res) => {
+        const result = await contents.updateOne({_id : objectId("631c379f3b0ff35052a58fae")}, { $set: { marathonInformation: req.body.data } })
+        res.status(200).json(result)
+    })
+
+    app.post('/updateTeamPackage',async (req,res) => {
+        const result = await contents.updateOne({_id : objectId("631c379f3b0ff35052a58fae")}, { $set: { team: req.body.data } })
+        res.status(200).json(result)
+    })
 }
 
 run().catch(console.dir);
